@@ -1,0 +1,11 @@
+ARG IMAGE_EU_XFSC_BDD_CORE
+FROM ${IMAGE_EU_XFSC_BDD_CORE}
+
+USER root
+
+RUN apt install vim -y
+
+USER xfsc
+
+RUN pip uninstall eu-xfsc-bdd -y
+RUN pip install -e "./eu.xfsc.bdd.core[dev]"

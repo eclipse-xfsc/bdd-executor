@@ -1,0 +1,35 @@
+# commands:
+# docker-compose up --build
+# docker-compose run eu-xfsc-bdd-core bash
+# docker-compose run eu-xfsc-bdd-core-dev bash
+
+services:
+  eu-xfsc-bdd-core:
+    image: ${IMAGE_EU_XFSC_BDD_CORE}:${TRAIN_DOCKER_IMAGE_TAG}
+    build:
+      dockerfile: ./deployment/docker/Dockerfile
+      context: ../..
+    container_name: eu-xfsc-bdd-core
+    volumes:
+      - ../../src/eu/xfsc/bdd/core:/home/xfsc/.local/lib/python3.12/site-packages/eu/xfsc/bdd/core
+      - ../../src:/home/xfsc/eu.xfsc.bdd.core/src
+      - ../../setup.cfg:/home/xfsc/eu.xfsc.bdd.core/setup.cfg
+    user: "1001"
+
+
+  eu-xfsc-bdd-core-dev:
+    image: ${IMAGE_EU_XFSC_BDD_CORE}-dev:${TRAIN_DOCKER_IMAGE_TAG}
+    build:
+      dockerfile: ./deployment/docker/Dockerfile.dev
+      context: ../..
+      args:
+        IMAGE_EU_XFSC_BDD_CORE: ${IMAGE_EU_XFSC_BDD_CORE}:${TRAIN_DOCKER_IMAGE_TAG}
+
+    container_name: eu-xfsc-bdd-core-dev
+    volumes:
+      - ../../src/eu/xfsc/bdd/core:/home/xfsc/.local/lib/python3.12/site-packages/eu/xfsc/bdd/core
+      - ../../src:/home/xfsc/eu.xfsc.bdd.core/src
+      - ../../setup.cfg:/home/xfsc/eu.xfsc.bdd.core/setup.cfg
+    user: "1001"
+    depends_on:
+      - eu-xfsc-bdd-core
