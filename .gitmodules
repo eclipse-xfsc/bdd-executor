@@ -1,0 +1,13 @@
+[submodule "implementations/ocm"]
+	path = implementations/ocm
+	url = git@github.com/eclipse-xfsc/aries-integration-tests.git
+[submodule "implementations/ocm-w"]
+	path = implementations/ocm-w
+	url = git@github.com/eclipse-xfsc/oid4-vci-vp-integration-tests.git
+[submodule "implementations/train"]
+	path = implementations/train
+	url = git@github.com/eclipse-xfsc/train-integration-tests.git
+	branch = main
+[submodule "implementations/cpcm"]
+	path = implementations/cpcm
+	url = git@github.com/eclipse-xfsc/cloud-wallet-integration-tests.git
